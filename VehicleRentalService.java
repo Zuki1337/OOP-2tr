@@ -40,13 +40,11 @@ class Vehicle {
     }
 }
 
-// Client class
 class Client {
     private String name;
     private int clientId;
     private String phoneNumber;
 
-    // Constructor
     public Client(String name, int clientId, String phoneNumber) {
         this.name = name;
         this.clientId = clientId;
