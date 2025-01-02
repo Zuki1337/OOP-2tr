@@ -1,0 +1,167 @@
+class Vehicle {
+    private String model;
+    private String licensePlate;
+    private double rentalPricePerDay;
+
+    public Vehicle(String model, String licensePlate, double rentalPricePerDay) {
+        this.model = model;
+        this.licensePlate = licensePlate;
+        this.rentalPricePerDay = rentalPricePerDay;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public String getLicensePlate() {
+        return licensePlate;
+    }
+
+    public void setLicensePlate(String licensePlate) {
+        this.licensePlate = licensePlate;
+    }
+
+    public double getRentalPricePerDay() {
+        return rentalPricePerDay;
+    }
+
+    public void setRentalPricePerDay(double rentalPricePerDay) {
+        this.rentalPricePerDay = rentalPricePerDay;
+    }
+
+    @Override
+    public String toString() {
+        return "Vehicle [Model=" + model + ", License Plate=" + licensePlate + ", Rental Price/Day=" + rentalPricePerDay + "]";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Vehicle vehicle = (Vehicle) obj;
+        return Double.compare(vehicle.rentalPricePerDay, rentalPricePerDay) == 0 &&
+               model.equals(vehicle.model) &&
+               licensePlate.equals(vehicle.licensePlate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(model, licensePlate, rentalPricePerDay);
+    }
+}
+
+class Client {
+    private String name;
+    private int clientId;
+    private String phoneNumber;
+
+    public Client(String name, int clientId, String phoneNumber) {
+        this.name = name;
+        this.clientId = clientId;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(int clientId) {
+        this.clientId = clientId;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "Client [Name=" + name + ", Client ID=" + clientId + ", Phone Number=" + phoneNumber + "]";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Client client = (Client) obj;
+        return clientId == client.clientId && name.equals(client.name) && phoneNumber.equals(client.phoneNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, clientId, phoneNumber);
+    }
+}
+
+class RentalService {
+    private Vehicle vehicle;
+    private Client client;
+    private int rentalDays;
+
+    public RentalService(Vehicle vehicle, Client client, int rentalDays) {
+        this.vehicle = vehicle;
+        this.client = client;
+        this.rentalDays = rentalDays;
+    }
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public int getRentalDays() {
+        return rentalDays;
+    }
+
+    public void setRentalDays(int rentalDays) {
+        this.rentalDays = rentalDays;
+    }
+
+    public double calculateTotalCost() {
+        return vehicle.getRentalPricePerDay() * rentalDays;
+    }
+
+    @Override
+    public String toString() {
+        return "RentalService [" + client + ", " + vehicle + ", Rental Days=" + rentalDays + ", Total Cost=" + calculateTotalCost() + "]";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        RentalService that = (RentalService) obj;
+        return rentalDays == that.rentalDays && vehicle.equals(that.vehicle) && client.equals(that.client);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(vehicle, client, rentalDays);
+    }
+}
